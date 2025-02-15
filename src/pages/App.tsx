@@ -44,7 +44,7 @@ function App() {
         <Form.Control
           placeholder="Search by name..."
           value={searchTerm}
-          onChange={(e) => setSearchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
       </InputGroup>
       <Table striped bordered hover responsive>
