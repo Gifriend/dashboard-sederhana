@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Container, Form, InputGroup } from 'react-bootstrap';
+import { Container, Form, InputGroup, Table } from 'react-bootstrap';
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -14,6 +14,16 @@ function App() {
           onChange={(e) => setSearchTerm}
         />
       </InputGroup>
+      <Table striped bordered hover responsive>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Company</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </Table>
     </Container>
   );
 }
