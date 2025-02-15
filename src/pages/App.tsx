@@ -1,9 +1,10 @@
+import { Container } from 'react-bootstrap';
 function App() {
 
   return (
-    <>
-    <h1>User Dashboard</h1>
-    </>
+    <Container className="mt-5">
+      <h1 className="text-center">User Dashboard</h1>
+    </Container>
   )
 }
 
