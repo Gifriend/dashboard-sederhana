@@ -1,8 +1,41 @@
-import { useState } from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { Container, Form, InputGroup, Table } from 'react-bootstrap';
 
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  company: {
+    name: string;
+  };
+}
+
 function App() {
+  const [users, setUsers] = useState<User[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await axios.get(
+          'https://jsonplaceholder.typicode.com/users'
+        );
+        setUsers(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
+  const filteredUsers = users.filter((user) =>
+    user.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <Container className="mt-5">
@@ -22,7 +55,15 @@ function App() {
             <th>Company</th>
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+          {filteredUsers.map((user) => (
+            <tr key={user.id}>
+              <td>{user.name}</td>
+              <td>{user.email}</td>
+              <td>{user.company.name}</td>
+            </tr>
+          ))}
+        </tbody>
       </Table>
     </Container>
   );
