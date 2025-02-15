@@ -101,6 +101,10 @@
   margin-bottom: 12px;
 }
 
+.user-details {
+  margin-top: 10px;
+}
+
 .user-info {
   display: flex;
   margin-bottom: 8px;
