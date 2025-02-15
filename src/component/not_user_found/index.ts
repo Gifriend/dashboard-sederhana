@@ -1,0 +1,1 @@
+export { default } from './not_user_found';
